@@ -8,4 +8,6 @@ public class Constant {
     public static final Integer COACH_NAME_MAX_LENGTH = 4;
 
     public static final Integer HATE_MENU_MAX_SIZE = 2;
+
+    public static final Integer CATEGORY_MAX_SIZE = 2;
 }
