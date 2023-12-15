@@ -1,7 +1,14 @@
 package menu;
 
+import menu.controller.GameController;
+import menu.service.MenuService;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        MenuService menuService = new MenuService();
+        menuService.process();
+
+        GameController gameController = new GameController();
+        gameController.service();
     }
 }
