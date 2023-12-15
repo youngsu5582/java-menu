@@ -16,6 +16,9 @@ public record HateInfo(List<Menu> hateMenuList) {
                 .toList();
         return new HateInfo(hateMenuList);
     }
+    public boolean containMenu(Menu menu){
+        return hateMenuList.contains(menu);
+    }
 
     private static void validateHateMenuInfo(List<String> hateMenuInfo) {
         validateMenuSize(hateMenuInfo.size());
