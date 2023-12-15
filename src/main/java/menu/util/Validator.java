@@ -5,12 +5,15 @@ import menu.exception.ExceptionMessage;
 import java.util.regex.Pattern;
 
 public class Validator {
+    //쉼표 검증
+    private static Pattern pattern = Pattern.compile("^([a-zA-Z가-힣]+,)*[a-zA-Z가-힣]+$");
+
     public static void validateFormat(String info) {
-        Pattern pattern = Pattern.compile("^([a-zA-Z]+,)*[a-zA-Z]+$\n");
         if (pattern.matcher(info).matches()) {
             return;
         }
-        throw new Error(ExceptionMessage.INVALID_FORMAT.getMessage());
+
+        throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_COACH_NAME.getMessage());
     }
 
 }
