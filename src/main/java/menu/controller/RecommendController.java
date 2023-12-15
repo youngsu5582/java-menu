@@ -4,6 +4,7 @@ import menu.ApplicationStatus;
 import menu.domain.Category;
 import menu.domain.CategoryResult;
 import menu.domain.CoachRecommend;
+import menu.domain.Menu;
 import menu.repository.CoachRepository;
 import menu.repository.MenuRepository;
 import menu.util.RandomGenerator;
@@ -42,7 +43,7 @@ public class RecommendController {
                 continue;
             }
             List<String> menus = MenuRepository.findMenuNamesByCategory(category);
-            coachRecommends.forEach(coachRecommend -> coachRecommend.recommendMenu(menus));
+            coachRecommends.forEach(coachRecommend -> recommendMenu(menus, coachRecommend));
             dayCount++;
         }
 
@@ -54,4 +55,15 @@ public class RecommendController {
         outputView.printFinishMessage();
         return ApplicationStatus.APPLICATION_EXIT;
     }
+
+    private void recommendMenu(List<String> menus, CoachRecommend coachRecommend) {
+        String menuName = RandomGenerator.generateRandomMenuName(menus);
+        Menu menu = MenuRepository.findMenuByName(menuName);
+        if (coachRecommend.satisfyMenu(menu)) {
+            coachRecommend.recommendMenu(menu);
+            return;
+        }
+        recommendMenu(menus, coachRecommend);
+    }
+
 }
