@@ -1,5 +1,7 @@
 package menu.view;
 
+import menu.view.message.OutputViewMessage;
+
 public class OutputView {
     private static OutputView INSTANCE = null;
     private static final String ERROR_PREFIX = "[ERROR] ";
@@ -21,6 +23,9 @@ public class OutputView {
 
     public void printErrorMessage(String errorMessage) {
         printMessage(ERROR_PREFIX + errorMessage);
+    }
+    public void printStartMessage(){
+        printMessage(OutputViewMessage.APPLICATION_START.getMessage());
     }
 
 }
